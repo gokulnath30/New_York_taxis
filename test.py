@@ -4,8 +4,6 @@ import json
 from datetime import datetime
 import urllib.request
 
-
-
 # declare payment types
 # 
 
