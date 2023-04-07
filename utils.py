@@ -2,7 +2,7 @@ from datetime import datetime,timedelta
 import urllib.request
 import os
 
-
+last_update = datetime.now().strftime("%y-%B-%d %H:%M")
 
 # Filter the data
 def clean_data(df):
@@ -35,14 +35,15 @@ def analytics(df):
             'custom_indicator': round(custom_indicator,2)}
 
 
-    
-
-
-def update_data():
+def update_data(date=None):
+    global last_update
+    last_update = datetime.now().strftime("%y-%B-%d %H:%M")
     current_date = datetime.now()
     current_month_date = datetime(current_date.year, current_date.month, 1)
-    cmonth = current_month_date.strftime('%Y-%m')
-
+    if date == None:
+        cmonth = current_month_date.strftime('%Y-%m')
+    else:
+        cmonth = date
     # mlist = ['2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06', '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12', '2023-01', '2023-02', '2023-03', '2023-04', '2023-05', '2023-06', '2023-07', '2023-08', '2023-09', '2023-10', '2023-11', '2023-12']
     # for cmonth in mlist:
 
@@ -52,5 +53,8 @@ def update_data():
         file_name = os.path.basename(url)
         path = os.path.join(folder_path, file_name)
         urllib.request.urlretrieve(url, path)
+        return {"data":"completed"}
     except:
         print(cmonth+" This Month Data Not found")
+        return {"data":"not completed"}
+

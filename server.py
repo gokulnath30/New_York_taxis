@@ -2,15 +2,13 @@ from fastapi import FastAPI,Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import JSONResponse
-import pandas as pd
-import os,json
 from datetime import datetime
+import pandas as pd
 from utils import *
-import threading
-import schedule
+import os,json,threading,schedule
 
 
-
+# scheduler for updating dataset
 def scheduler():
     schedule.every().day.at("16:36:00").do(update_data)
     while True:
@@ -26,7 +24,6 @@ templates = Jinja2Templates(directory="templates")
 # my_thread = threading.Thread(target=scheduler)
 # my_thread.start()
 
-
 @app.post("/uploadfiles")
 async def calculate_metrics(request: Request):
     uploadfiles = ["dataset/"+x for x in list(dict(await request.form()).values())]
@@ -39,16 +36,21 @@ async def calculate_metrics(request: Request):
     with open(filepath, 'w') as f:
         json.dump(metrics, f)
 
-    return JSONResponse(content={"output":metrics,"download":filepath,"filename":jsonname,"donut":list(metrics["payment_types"].values())})
+    return JSONResponse(content={"output":metrics,"download":filepath,"filename":jsonname,"donut":list(metrics["payment_types"].values()),"lable":list(metrics["payment_types"].keys())})
 
 
 # Get dataset list
 @app.get("/get_files")
 async def get_files(request: Request):
-    return JSONResponse(content={"files":os.listdir('dataset')})
+    global last_update
+    return JSONResponse(content={"files":os.listdir('dataset'),"last_update":last_update})
 
+@app.get("/download/{date}")
+async def update_files(date: str):
+    res = update_data(date)
+    return JSONResponse(content=res)
 
-# Load Index file
+# Load templates file
 @app.get("/")
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})

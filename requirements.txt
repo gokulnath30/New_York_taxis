@@ -1,4 +1,6 @@
-fastapi
-uvicorn
-pandas
-numpy
+fastapi==0.75.0
+uvicorn==0.17.6
+pandas==1.2.4
+thread6==0.2.0
+schedule==1.1.0
+urllib3 == 1.26.14

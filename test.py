@@ -45,12 +45,12 @@ def analytics(df):
 
 
 # # Define data directory and file paths
-# data_dir = 'dataset/'
-# yellow_files = ['yellow_tripdata_2022-01.parquet', 'yellow_tripdata_2022-02.parquet']
+data_dir = 'dataset/'
+yellow_files = ['yellow_tripdata_2022-08.parquet','yellow_tripdata_2022-08.parquet']
 # output_dir = 'output/'
 
 
-# # combain the files
+# combain the files
 # df = pd.concat([pd.read_parquet(os.path.join(data_dir, f)) for f in yellow_files])
 # df = clean_data(df)
 # metrics = analytics(df)
@@ -66,28 +66,31 @@ def analytics(df):
 # current_date = datetime.now()
 # current_month_date = datetime(current_date.year, current_date.month, 1)
 # cmonth = current_month_date.strftime('%Y-%m')
-# try:
-#     url = 'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_'+cmonth+'.parquet'
-#     folder_path = 'dataset/'
-#     file_name = os.path.basename(url)
-#     path = os.path.join(folder_path, file_name)
-#     urllib.request.urlretrieve(url, path)
-# except:
-#     print(cmonth+" This Month Data Not found")
+
+cmonth = "2022-08"
+try:
+    url = 'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_'+cmonth+'.parquet'
+    folder_path = 'dataset/'
+    file_name = os.path.basename(url)
+    path = os.path.join(folder_path, file_name)
+    urllib.request.urlretrieve(url, path)
+    
+except:
+    print(cmonth+" This Month Data Not found")
 
 
-import datetime
+# import datetime
 
-def get_month_list(start_year, end_year):
-    start_date = datetime.date(start_year, 1, 1)
-    end_date = datetime.date(end_year, 12, 31)
-    months = []
-    while start_date <= end_date:
-        months.append(start_date.strftime("%Y-%m"))
-        start_date += datetime.timedelta(days=32)
-        start_date = start_date.replace(day=1)
-    return months
+# def get_month_list(start_year, end_year):
+#     start_date = datetime.date(start_year, 1, 1)
+#     end_date = datetime.date(end_year, 12, 31)
+#     months = []
+#     while start_date <= end_date:
+#         months.append(start_date.strftime("%Y-%m"))
+#         start_date += datetime.timedelta(days=32)
+#         start_date = start_date.replace(day=1)
+#     return months
 
-# Example usage
-months = get_month_list(2022, 2023)
-print(months)
+# # Example usage
+# months = get_month_list(2022, 2023)
+# print(months)
