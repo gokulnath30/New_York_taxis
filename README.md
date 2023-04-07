@@ -2,11 +2,17 @@
 
 This is a FastAPI app that provides a simple REST API for managing data.
 
-## Installation
 
-To install this app, you can run the following commands:
+## Clone Repo
+git clone https://github.com/gokulnath30/New_York_taxis
+cd New_York_taxis
+pip install -r requirements.txt
+run_server.cmd or py -m uvicorn server:app --reload
 
+## Docker Installation
 
+docker build -t my-fastapi-app .
+docker run -d --name my-app-container -p 80:80 my-fastapi-app
 
 This will start the app at http://localhost:8000. You can then use the API to manage data.
 
