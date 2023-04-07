@@ -1,6 +1,23 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim-buster
 
-COPY requirements.txt /app/requirements.txt
-RUN pip install -r /app/requirements.txt
+# Set the working directory to /app
+WORKDIR /app
 
-COPY app /app/app
+# Copy the requirements file into the container
+COPY requirements.txt .
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+# Copy the rest of the application code into the container
+COPY . .
+
+# Expose port 80 for the application
+EXPOSE 80
+
+# Set the environment variable for the application
+ENV ENVIRONMENT=production
+
+# Run the command to start the application
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

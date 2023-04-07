@@ -1,0 +1,41 @@
+.multiselect {
+  position: relative;
+  width: 200px;
+}
+
+
+
+.options {
+  position: relative;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: scroll;
+  list-style-type: disc;
+  margin: 0;
+  padding: 0;
+}
+
+.options input {
+  display: none;
+}
+
+.options label {
+  display: block;
+  padding: 5px;
+  margin: 0;
+}
+
+.options input:checked + label {
+  background-color: #f0f0f0;
+}
+
+
+#multiselect{
+  overflow-y: scroll;
+  height: 300px;
+}
