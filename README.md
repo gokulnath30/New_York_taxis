@@ -1,10 +1,10 @@
 # NewYork Taxis Dashboard
 
-This is a FastAPI app that provides a simple REST API for managing data.
+The Application computing various statistics from the dataset of New York taxis trips. Specifically, processing the Yellow taxi trips data and computing the following metrics.
 
 
 ## Clone Repo
-git clone https://github.com/gokulnath30/New_York_taxis
+    git clone https://github.com/gokulnath30/New_York_taxis
     cd New_York_taxis
     pip install -r requirements.txt
     run_server.cmd or py -m uvicorn server:app --reload
