@@ -19,7 +19,10 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
+if not os.path.isdir("dataset"):
+    os.mkdir("dataset")
 
+    
 # Thread for scheduler 
 # my_thread = threading.Thread(target=scheduler)
 # my_thread.start()
