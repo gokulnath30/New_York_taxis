@@ -25,8 +25,8 @@ The following API endpoints are available:
 - `POST /uploadfiles`: Calculate Metrices
 
 ## Deployed in Render
+[Demo](https://new-york-taxis.onrender.com/ "NewYork Taxis")
 
-![Demo](https://new-york-taxis.onrender.com/)
 
 ## Screenshots
 
