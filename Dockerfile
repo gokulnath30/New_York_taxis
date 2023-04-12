@@ -10,6 +10,8 @@ COPY requirements.txt .
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
+RUN mkdir /app/dataset
+
 # Copy the rest of the application code into the container
 COPY . .
 
