@@ -1,5 +1,2 @@
 **/*.pdf
 **/__pycache__/*
-**/*.parquet
-__pycache__/
-*.parquet
